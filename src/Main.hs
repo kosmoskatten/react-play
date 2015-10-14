@@ -7,6 +7,7 @@ module Main
     ( main
     ) where
 
+import Control.Monad.IO.Class (liftIO)
 import Control.Monad.Trans.Either (EitherT)
 import Data.Aeson (ToJSON)
 import Data.Text (Text)
@@ -30,11 +31,13 @@ api :: Proxy API
 api = Proxy
 
 comments :: EitherT ServantErr IO [Comment]
-comments = return [ Comment { author = "Sigge Pigg"
-                            , text = "A little meow" }
-                  , Comment { author = "Frasse Tass"
-                            , text = "Just *another* meow" }
-                  ]
+comments = do
+    liftIO $ putStrLn "Fetching comments ..."
+    return [ Comment { author = "Sigge Pigg"                        
+                     , text = "A little meow" }
+           , Comment { author = "Frasse Tass"
+                     , text = "Just *another* meow" }
+           ]
 
 server :: Server API
 server = comments

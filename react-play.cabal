@@ -24,6 +24,7 @@ executable react-play
                      , either
                      , servant-server
                      , text
+                     , transformers
                      , wai
                      , warp
   hs-source-dirs:      src
