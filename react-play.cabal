@@ -21,6 +21,7 @@ executable react-play
   -- other-extensions:    
   build-depends:       base >=4.8 && <4.9
                      , aeson
+                     , either
                      , servant-server
                      , text
                      , wai
